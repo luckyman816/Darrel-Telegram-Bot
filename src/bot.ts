@@ -125,7 +125,7 @@ bot.onText(/\/start/, (msg: any) => {
   console.log("--//---myChatID----//---", chatId);
 
   const welcomeMessage =
-    "Hello! Welcome to the Yes Mystery Bot 🐉 🐸 🐲                  \n\nStart our tap-to-earn game by clicking the “Play” button below. Choose your adventure and start tapping the screen to collect coins.   \n\nBoost your passive income and develop your own strategy with multi-taps, higher energy, and referrals. Join our social media to become an active member of the CryptoYes society with the exclusive “Yes Token.” \n\nIn Mystery Bot, all activities are rewarded. Gather as many coins as possible.";
+    "🕹️ *Introducing MAGA Tap-A-Thon!* 🕹️                             \n\n🇺🇸 Ready to make America great again, one tap at a time? Join the ultimate clicker game where YOU help Trump reach his goal of ultimate greatness! 🏛️✨   \n\n🎯 *How It Works:*    \n\n👉 *Tap Away!* Each tap gets Trump closer to his MAGA dreams. More walls, more tweets, more... hats! 🎩 \n\n💸 *Earn Rewards:* \n\n    --*Trump Coins* 💰 for completing tasks and challenges, and tapping away!!  \n\n   --Show off your *MAGA Leaderboard* status! 📊   \n\nAre you ready to tap your way to greatness? Join MAGA Tap-A-Thon now and let’s make tapping great again! 🇺🇸🎉";
 
   // Send the welcome message with the inline keyboard
   bot.sendMessage(chatId, welcomeMessage, options);
@@ -148,7 +148,7 @@ bot.on("callback_query", (callbackQuery: any) => {
   if (category === "earn") {
     // Replace 'URL_TO_CHANNEL' with your channel's URL
     const messagetext =
-      "How to play Monster Mystery Bot⚡️                              \n\n 💰 Tap to Earn \n\nTap the screen and collect coins. These coins will be exchanged to $MKT at the end of the event.  \n\n  ⛏ Mine\n\nUpgrade your status by buying special NFTs that will give you higher passive income opportunities (coming soon).  \n\n ⏰ Profit Per Hour \n\nThe bot itself as well as your status will work for you and mine more coins while you are away!  \n\nNote: You need to log in to the game again once in a while. \n\n  👥 Friends & Family \n\nInvite your friends and family and you will get bonuses. Help a friend move to the higher levels and you will get even more bonuses. \n\n⏳ Token Listings (top 10 exchanges only) \n\nAt the end of the event, $Yes tokens will be airdropped and distributed among the players. MKT is already transferable and tradable. You can buy, sell or stake in our website to earn even more! You can buy Mike Token ($MKT) at the below exchanges right now: \n\nhttps://pancakeswap.finance/swap?outputCurrency=0xF542aC438CF8Cd4477A1fc7aB88ADDA5426d55Ed\n\nhttps://m.indoex.io/orderbookmobile/MKT_USDT \n\n📑 MKT Contract Address:\n\n0xF542aC438CF8Cd4477A1fc7aB88ADDA5426d55Ed\n\nThe exact date of T1 & T2 Exchange listings will be announced in our announcement channel.\n\nHave fun and enjoy earning! 💰💰";
+      "How to play Donald Trump Bot⚡️ \n\n 💰 Tap to Earn \n\nTap the screen and collect coins. These coins will be exchanged to $MKT at the end of the event.  \n\n  ⛏ Mine\n\nUpgrade your status by buying special NFTs that will give you higher passive income opportunities (coming soon).  \n\n ⏰ Profit Per Hour \n\nThe bot itself as well as your status will work for you and mine more coins while you are away!  \n\nNote: You need to log in to the game again once in a while. \n\n  👥 Friends & Family \n\nInvite your friends and family and you will get bonuses. Help a friend move to the higher levels and you will get even more bonuses. \n\n⏳ Token Listings (top 10 exchanges only) \n\nAt the end of the event, $Yes tokens will be airdropped and distributed among the players. MKT is already transferable and tradable. You can buy, sell or stake in our website to earn even more! You can buy Mike Token ($MKT) at the below exchanges right now: \n\nhttps://pancakeswap.finance/swap?outputCurrency=0xF542aC438CF8Cd4477A1fc7aB88ADDA5426d55Ed\n\nhttps://m.indoex.io/orderbookmobile/MKT_USDT \n\n📑 MKT Contract Address:\n\n0xF542aC438CF8Cd4477A1fc7aB88ADDA5426d55Ed\n\nThe exact date of T1 & T2 Exchange listings will be announced in our announcement channel.\n\nHave fun and enjoy earning! 💰💰";
     // Options to disable web page preview
 
     bot.sendMessage(message.chat.id, messagetext, options3);
@@ -176,14 +176,14 @@ bot.on("callback_query", (callbackQuery: any) => {
           try {
             await axios
               .post(
-                `https://mike-token-backend-1.onrender.com/api/earnings/add`,
+                `http://localhost:5000/api/earnings/add`,
                 {
                   username: USER_NAME,
                 }
               )
               .then(() => {
                 axios.post(
-                  `https://mike-token-backend-1.onrender.com/api/earnings/update/joinTelegram/${USER_NAME}`,
+                  `http://localhost:5000/api/earnings/update/joinTelegram/${USER_NAME}`,
                   {
                     status: true,
                     earned: false,
@@ -225,14 +225,14 @@ bot.on("callback_query", (callbackQuery: any) => {
           try {
             await axios
               .post(
-                `https://mike-token-backend-1.onrender.com/api/earnings/add`,
+                `http://localhost:5000/api/earnings/add`,
                 {
                   username: USER_NAME,
                 }
               )
               .then(() => {
                 axios.post(
-                  `https://mike-token-backend-1.onrender.com/api/earnings/update/subscribeTelegram/${USER_NAME}`,
+                  `http://localhost:5000/api/earnings/update/subscribeTelegram/${USER_NAME}`,
                   {
                     status: true,
                     earned: false,
@@ -299,7 +299,7 @@ bot.onText(/\/start (.+)/, async (msg: any, match: any) => {
 
   try {
     await axios.post(
-      `https://mike-token-backend-1.onrender.com/api/friend/add`,
+      `http://localhost:5000/api/friend/add`,
       {
         username: referrerUsername,
         friend: USER_NAME,
@@ -307,22 +307,22 @@ bot.onText(/\/start (.+)/, async (msg: any, match: any) => {
     );
 
     const response00 = await axios.post(
-      `https://mike-token-backend-1.onrender.com/api/wallet/add`,
+      `http://localhost:5000/api/wallet/add`,
       {
         username: USER_NAME,
       }
     );
 
     const response0 = await axios.post(
-      `https://mike-token-backend-1.onrender.com/api/wallet/updateBalance/${USER_NAME}`,
+      `http://localhost:5000/api/wallet/updateBalance/${USER_NAME}`,
       { balance: 200 }
     );
 
     const response1 = await axios.post(
-      `https://mike-token-backend-1.onrender.com/api/wallet/${referrerUsername}`
+      `http://localhost:5000/api/wallet/${referrerUsername}`
     );
     const response2 = await axios.post(
-      `https://mike-token-backend-1.onrender.com/api/wallet/updateBalance/${referrerUsername}`,
+      `http://localhost:5000/api/wallet/updateBalance/${referrerUsername}`,
       { balance: 200 + response1.data.balance }
     );
 

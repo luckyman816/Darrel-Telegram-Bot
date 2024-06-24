@@ -124,7 +124,7 @@ bot.on("callback_query", (callbackQuery) => {
     const category = callbackQuery.data; // The 'callback_data' associated with the button pressed.
     if (category === "earn") {
         // Replace 'URL_TO_CHANNEL' with your channel's URL
-        const messagetext = "How to play Monster Mystery Bot⚡️                              \n\n 💰 Tap to Earn \n\nTap the screen and collect coins. These coins will be exchanged to $MKT at the end of the event.  \n\n  ⛏ Mine\n\nUpgrade your status by buying special NFTs that will give you higher passive income opportunities (coming soon).  \n\n ⏰ Profit Per Hour \n\nThe bot itself as well as your status will work for you and mine more coins while you are away!  \n\nNote: You need to log in to the game again once in a while. \n\n  👥 Friends & Family \n\nInvite your friends and family and you will get bonuses. Help a friend move to the higher levels and you will get even more bonuses. \n\n⏳ Token Listings (top 10 exchanges only) \n\nAt the end of the event, $Yes tokens will be airdropped and distributed among the players. MKT is already transferable and tradable. You can buy, sell or stake in our website to earn even more! You can buy Mike Token ($MKT) at the below exchanges right now: \n\nhttps://pancakeswap.finance/swap?outputCurrency=0xF542aC438CF8Cd4477A1fc7aB88ADDA5426d55Ed\n\nhttps://m.indoex.io/orderbookmobile/MKT_USDT \n\n📑 MKT Contract Address:\n\n0xF542aC438CF8Cd4477A1fc7aB88ADDA5426d55Ed\n\nThe exact date of T1 & T2 Exchange listings will be announced in our announcement channel.\n\nHave fun and enjoy earning! 💰💰";
+        const messagetext = "How to play Donald Trump Bot⚡️ \n\n 💰 Tap to Earn \n\nTap the screen and collect coins. These coins will be exchanged to $MKT at the end of the event.  \n\n  ⛏ Mine\n\nUpgrade your status by buying special NFTs that will give you higher passive income opportunities (coming soon).  \n\n ⏰ Profit Per Hour \n\nThe bot itself as well as your status will work for you and mine more coins while you are away!  \n\nNote: You need to log in to the game again once in a while. \n\n  👥 Friends & Family \n\nInvite your friends and family and you will get bonuses. Help a friend move to the higher levels and you will get even more bonuses. \n\n⏳ Token Listings (top 10 exchanges only) \n\nAt the end of the event, $Yes tokens will be airdropped and distributed among the players. MKT is already transferable and tradable. You can buy, sell or stake in our website to earn even more! You can buy Mike Token ($MKT) at the below exchanges right now: \n\nhttps://pancakeswap.finance/swap?outputCurrency=0xF542aC438CF8Cd4477A1fc7aB88ADDA5426d55Ed\n\nhttps://m.indoex.io/orderbookmobile/MKT_USDT \n\n📑 MKT Contract Address:\n\n0xF542aC438CF8Cd4477A1fc7aB88ADDA5426d55Ed\n\nThe exact date of T1 & T2 Exchange listings will be announced in our announcement channel.\n\nHave fun and enjoy earning! 💰💰";
         // Options to disable web page preview
         bot.sendMessage(message.chat.id, messagetext, options3);
     }
@@ -143,11 +143,11 @@ bot.on("callback_query", (callbackQuery) => {
                 bot.sendMessage(message.chat.id, "🏆  You will gain 1000 coins in app-task!", option1);
                 try {
                     await axios
-                        .post(`https://mike-token-backend-1.onrender.com/api/earnings/add`, {
+                        .post(`http://localhost:5000/api/earnings/add`, {
                         username: USER_NAME,
                     })
                         .then(() => {
-                        axios.post(`https://mike-token-backend-1.onrender.com/api/earnings/update/joinTelegram/${USER_NAME}`, {
+                        axios.post(`http://localhost:5000/api/earnings/update/joinTelegram/${USER_NAME}`, {
                             status: true,
                             earned: false,
                         });
@@ -175,11 +175,11 @@ bot.on("callback_query", (callbackQuery) => {
                 bot.sendMessage(message.chat.id, "🏆  You will gain 1000 coins in app-task!", option1);
                 try {
                     await axios
-                        .post(`https://mike-token-backend-1.onrender.com/api/earnings/add`, {
+                        .post(`http://localhost:5000/api/earnings/add`, {
                         username: USER_NAME,
                     })
                         .then(() => {
-                        axios.post(`https://mike-token-backend-1.onrender.com/api/earnings/update/subscribeTelegram/${USER_NAME}`, {
+                        axios.post(`http://localhost:5000/api/earnings/update/subscribeTelegram/${USER_NAME}`, {
                             status: true,
                             earned: false,
                         });
@@ -231,16 +231,16 @@ bot.onText(/\/start (.+)/, async (msg, match) => {
     console.log("--//---referrerUsername----//---", referrerUsername);
     console.log("--//---USER_NAME----//---", USER_NAME);
     try {
-        await axios.post(`https://mike-token-backend-1.onrender.com/api/friend/add`, {
+        await axios.post(`http://localhost:5000/api/friend/add`, {
             username: referrerUsername,
             friend: USER_NAME,
         });
-        const response00 = await axios.post(`https://mike-token-backend-1.onrender.com/api/wallet/add`, {
+        const response00 = await axios.post(`http://localhost:5000/api/wallet/add`, {
             username: USER_NAME,
         });
-        const response0 = await axios.post(`https://mike-token-backend-1.onrender.com/api/wallet/updateBalance/${USER_NAME}`, { balance: 200 });
-        const response1 = await axios.post(`https://mike-token-backend-1.onrender.com/api/wallet/${referrerUsername}`);
-        const response2 = await axios.post(`https://mike-token-backend-1.onrender.com/api/wallet/updateBalance/${referrerUsername}`, { balance: 200 + response1.data.balance });
+        const response0 = await axios.post(`http://localhost:5000/api/wallet/updateBalance/${USER_NAME}`, { balance: 200 });
+        const response1 = await axios.post(`http://localhost:5000/api/wallet/${referrerUsername}`);
+        const response2 = await axios.post(`http://localhost:5000/api/wallet/updateBalance/${referrerUsername}`, { balance: 200 + response1.data.balance });
         console.log(response2.data);
     }
     catch (error) {
